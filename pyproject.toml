@@ -1,0 +1,18 @@
+[project]
+name = "wholesale-marketplace"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.116.1",
+    "motor>=3.7.1",
+    "passlib[bcrypt]>=1.7.4",
+    "pydantic>=2.11.7",
+    "pymongo>=4.14.1",
+    "python-dateutil>=2.9.0.post0",
+    "python-dotenv>=1.1.1",
+    "python-jose[cryptography]>=3.5.0",
+    "python-multipart>=0.0.20",
+    "uvicorn>=0.35.0",
+]
