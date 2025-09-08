@@ -1,0 +1,102 @@
+"""
+User Model
+class User:
+    id: int
+    username: str (unique)
+    email: str (unique)
+    user_type: Enum["VENDOR", "BUYER"]
+    company_name: str
+    created_at: datetime
+
+Product Model
+class Product:
+    id: int
+    vendor_id: int (FK)
+    name: str
+    category: str
+    price: float  # Base price per unit
+    min_quantity: int  # Minimum order quantity
+    stock: int
+    created_at: datetime
+
+Order Model
+class Order:
+    id: int
+    buyer_id: int (FK)
+    total_amount: float
+    discount_percent: float
+    final_amount: float
+    created_at: datetime
+
+OrderItem Model
+class OrderItem:
+    id: int
+    order_id: int (FK)
+    product_id: int (FK)
+    quantity: int
+    unit_price: float
+    subtotal: float
+
+Discount Algorithm
+def calculate_discount(buyer_id: int, total_quantity: int, total_value: float) -> float:
+    ```
+    Discount Rules:
+    1. Quantity Bonus: 100+ units = 5%, 500+ units = 10%, 1000+ units = 15%
+    2. Value Bonus: $1000+ = 3%, $5000+ = 7%, $10000+ = 12%
+    3. Loyalty Bonus: Previous orders count (1-3 orders = 2%, 4+ orders = 5%)
+
+    Maximum discount: 25%
+    ```
+    pass
+
+Required Endpoints (Essential only, feel free to extend)
+
+Authentication
+POST /auth/register - Register user
+POST /auth/login - Login with JWT
+
+Products
+POST /products - Add product (vendors only)
+GET /products - List all products
+GET /products/{id} - Get product details
+
+Orders
+POST /orders/calculate - Calculate discount for cart items
+POST /orders - Place order with discount
+GET /orders/my - Get user's orders
+
+Key Endpoints Detail
+Calculate Discount (Most Important)
+POST /orders/calculate
+{
+  "items": [
+    {"product_id": 1, "quantity": 150},
+    {"product_id": 2, "quantity": 75}
+  ]
+}
+
+Response:
+{
+  "total_quantity": 225,
+  "total_value": 2500.00,
+  "discount_percent": 12,
+  "discount_amount": 300.00,
+  "final_amount": 2200.00,
+  "breakdown": {
+    "quantity_bonus": 5,
+    "value_bonus": 3,
+    "loyalty_bonus": 4
+  }
+}
+
+Place Order
+POST /orders
+{
+  "items": [
+    {"product_id": 1, "quantity": 150},
+    {"product_id": 2, "quantity": 75}
+  ]
+}
+# Automatically applies discount and creates order
+
+"""

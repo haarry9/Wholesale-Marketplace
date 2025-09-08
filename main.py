@@ -1,6 +1,8 @@
-def main():
-    print("Hello from wholesale-marketplace!")
+from fastapi import FastAPI, APIRouter
+from routers import auth, products, orders
 
+app = FastAPI(title="Wholesale Marketplace")
 
-if __name__ == "__main__":
-    main()
+app.include_router(auth.router)
+app.include_router(products.router)
+app.include_router(orders.router)
